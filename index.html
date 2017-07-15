@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="./bootstrap.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <caption class="h2 text-danger">购物车</caption>
+                    <tr class="text-center">
+                        <td>商品名称</td>
+                        <td>商品价格(元)</td>
+                        <td>商品数量</td>
+                        <td>操作</td>
+                    </tr>
+                    <tr class="text-center" v-for="(item, index) in commodities">
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.count}}</td>
+                        <td><button @click="removeThis(index)" class="btn btn-danger btn-xs">删除</button></td>
+                    </tr>
+                    <tr class="text-right" v-show="commodities.length">
+                        <td colspan="4">
+                            <span style="margin-right: 20px">总计: {{totalAmount}}元</span>
+                            <button @click="removeAll" class="btn btn-danger">删除全部</button>
+                        </td>
+                    </tr>
+                </table>
+                <form role="form">
+                    <div class="form-group">
+                        <label for="productName" class="control-label">商品名称</label>
+                        <input v-model="name" type="text" id="proudctName" class="form-control" placeholder="请输入商品名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice" class="control-label">商品价</label>
+                        <input v-model="price" type="text" id="productPrice" class="form-control" placeholder="请输入商品价格">
+                    </div>
+                    <div class="form-group">
+                        <label for="productCount" class="control-label">商品数量</label>
+                        <input v-model="count" type="text" id="productCount" class="form-control" placeholder="请输入商品数量">
+                    </div>
+                    <div class="form-group">
+                        <button @click="handleAdd" type="button" class="btn btn-info">添加</button>
+                        <button @click="handleReset" type="reset" class="btn btn-danger">重置</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<script src="./vue.js"></script> 
+<script src="./index.js"></script> 
+</body>
+</html>
